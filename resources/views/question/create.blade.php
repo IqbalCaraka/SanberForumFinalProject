@@ -26,6 +26,17 @@
                 <textarea name="isi" id="isi" class="form-control my-editor">{!! old('isi', $isi ?? '') !!}</textarea>                
             </div>
 
+            <div class="form-group">
+                <label for="category">Category</label>          
+                <select name="category" id="category" class="form-control" > 
+                    @foreach($categories as $category)
+                        <option value="{{$category->id}}">
+                            {{$category->nama}}
+                        </option>
+                    @endforeach
+                </select>            
+            </div>
+
             @if($tags->count() > 0 )
                 <div class="form-group">
                     <label for="tags">Tag</label>          
@@ -51,8 +62,6 @@
     </div>
 </div>
 </div>
-
-
 
 @endsection
 

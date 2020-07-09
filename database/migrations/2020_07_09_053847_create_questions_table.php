@@ -18,8 +18,10 @@ class CreateQuestionsTable extends Migration
             $table->string('judul');
             $table->text('isi');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('category_id');
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }

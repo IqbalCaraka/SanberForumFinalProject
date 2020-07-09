@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Question;
 use App\Tag;
 use Illuminate\Http\Request;
@@ -26,7 +27,9 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        return view('question.create')->with('tags', Tag::all());
+        return view('question.create')->
+            with('tags', Tag::all())->
+            with('categories', Category::all());
     }
 
     /**
@@ -37,10 +40,12 @@ class QuestionsController extends Controller
      */
     public function store(Request $request)
     {
+        
         $question = Question::create([
             'judul' => $request->judul,
             'isi' =>$request->isi,
-            'user_id' => auth()->user()->id
+            'user_id' => auth()->user()->id,
+            'category_id' =>$request->category
         ]);
         
         if ($request->tags){
@@ -68,7 +73,10 @@ class QuestionsController extends Controller
      */
     public function edit($id)
     {
-        return view('question.edit')->with('question', Question::find($id));
+        return view('question.edit')->
+            with('question', Question::find($id))->
+            with('categories', Category::all())->
+            with('tags', Tag::all());
     }
 
     /**
@@ -82,8 +90,14 @@ class QuestionsController extends Controller
     {
         $question->judul = $request->judul;
         $question->isi = $request->isi;
+        $question->category_id = $request->category;
 
-        $question->save();
+
+        if ($request->tags){
+            $question->tags()->sync($request->tags);
+        }
+
+        $question->update();
         return redirect(route('question.index'));
     }
 

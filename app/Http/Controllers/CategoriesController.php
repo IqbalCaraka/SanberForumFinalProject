@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Tag;
 use Illuminate\Http\Request;
+use App\Category;
 
-class TagsController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class TagsController extends Controller
      */
     public function index()
     {
-        return view('tag.index')->with('tags', Tag::all());
+        return view('category.index')->with('categories', Category::all());
     }
 
     /**
@@ -24,7 +24,7 @@ class TagsController extends Controller
      */
     public function create()
     {
-        return view ('tag.create');
+        return view ('category.create');
     }
 
     /**
@@ -35,11 +35,11 @@ class TagsController extends Controller
      */
     public function store(Request $request)
     {
-        $tag = Tag::create([
+        $category = Category::create([
             'nama' => $request->nama
         ]);
 
-        return redirect(route('tag.index'));
+        return redirect(route('category.index'));
     }
 
     /**

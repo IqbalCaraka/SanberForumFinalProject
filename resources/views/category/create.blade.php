@@ -6,11 +6,11 @@
 <div class="container ">
 <div class="row justify-content-center mt-5">
     <div class="col-md-10">
-        <form action="{{route('tag.store')}}" method="POST">
+        <form action="{{route('category.store')}}" method="POST">
             {{@csrf_field()}}
             <div class="form-group">
                 <label for="nama">Nama</label>
-                <input type="text" class="form-control" name="nama" id="nama" title="Masukan Nama Tag">                
+                <input type="text" class="form-control" name="nama" id="nama" title="Masukan Nama Kategori">                
             </div>
 
             <div class="form-group">
