@@ -7,7 +7,7 @@
     <div class="col-md-10">
         <div class="card card-default">
             <div class="card-header">
-                <h3 class="float-left">List Of Question</h3>
+                <h3 class="float-left">List Pertanyaan</h3>
                 <a href="{{route('question.create')}}"  class="btn btn-success btn-lg float-right btn-sm" role="button" aria-disabled="true">Buat Pertanyaan</a>
             </div>
 
@@ -16,10 +16,32 @@
                 <ul class="list-group">              
                     
                     <li class="list-group-item">
-                        <a href="{{route('question.show', $question->id)}}">{{$question->judul}} </a>
-                                              
-                        <a href=""  class="btn btn-danger btn-lg float-right btn-sm" role="button" aria-disabled="true">Delete</a>
-                        <a href="{{route('question.edit', $question->id)}}" class="button btn btn-primary btn-sm float-right mr-2">Edit</a>  
+
+                        <div class="row">
+                            <div class="col-md-1 " >
+                                <div class="row my-4 justify-content-center" >
+                                    <p style="font-size: 10px;">Jumlah Vote</p>                                  
+                                </div>
+                                
+                                <div class="row my-4 justify-content-center">
+                                    <p  style="font-size: 10px;">Jumlah Jawaban</p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-11 justify-content-center my-auto ">
+                                
+                                <h5 style="display: inline;"><a href="{{route('question.show', $question->id)}}" class="text-dark">{{$question->judul}} </a></h5>              
+                                <form action="{{route('question.destroy', $question->id)}}" style="display: inline" method="POST">
+                                    {{@csrf_field()}}
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger float-right"> Delete </button>
+                                </form>
+                                <a href="{{route('question.edit', $question->id)}}" class="button btn btn-primary btn-sm float-right mr-2">Edit</a> 
+                            </div>
+                            
+                            
+                        </div>
+
                     </li>
                     
                 </ul>

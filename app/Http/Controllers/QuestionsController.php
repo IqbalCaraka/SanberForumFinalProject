@@ -73,9 +73,8 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Question $question)
     {
-        $question = Question::find($id);
         $question->judul = $request->judul;
         $question->isi = $request->isi;
 
@@ -89,8 +88,9 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Question $question)
     {
-        //
+        $question->delete();
+        return redirect(route('question.index'));
     }
 }
