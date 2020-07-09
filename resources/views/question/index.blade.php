@@ -28,9 +28,19 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-11 justify-content-center my-auto ">
-                                
-                                <h5 style="display: inline;"><a href="{{route('question.show', $question->id)}}" class="text-dark">{{$question->judul}} </a></h5>              
+                            <div class="col-md-9 justify-content-center my-auto "style="position: relative;">
+                                <div class="row ml-1 my-5" >
+                                    <h5 style="display: inline; position: absolute;"><a href="{{route('question.show', $question->id)}}" class="text-dark">{{$question->judul}} </a></h5>              
+                                </div>
+                                <div class="row ml-1 mt-5">
+                                    @foreach($question->tags as $tag)
+                                        <a class="badge badge-pill badge-secondary bg-gradient-primary mx-1" href="">{{$tag->nama}}</a>
+                                    @endforeach
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-2 justify-content-center my-auto">
                                 <form action="{{route('question.destroy', $question->id)}}" style="display: inline" method="POST">
                                     {{@csrf_field()}}
                                     @method('DELETE')
@@ -38,6 +48,7 @@
                                 </form>
                                 <a href="{{route('question.edit', $question->id)}}" class="button btn btn-primary btn-sm float-right mr-2">Edit</a> 
                             </div>
+                            
                             
                             
                         </div>

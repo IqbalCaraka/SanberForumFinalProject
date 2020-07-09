@@ -34,6 +34,10 @@
 
                             <div class="col-md-11 justify-content-center my-auto" style="border-left: 1px solid grey;">
                                 {!!$question->isi!!}
+                                @foreach($question->tags as $tag)
+                                    <a class="badge badge-pill badge-secondary bg-gradient-primary" href="">{{$tag->nama}}</a>
+                                @endforeach
+                                <div class="addthis_inline_share_toolbox mt-3"></div>
                             </div>
                         </div>                   
                     </li>                   
@@ -50,3 +54,8 @@
 
 
 @endsection
+
+@push('scripts')
+<!-- Go to www.addthis.com/dashboard to customize your tools --> 
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f073cb55230ac3b"></script>
+@endpush
