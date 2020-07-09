@@ -12,7 +12,7 @@
             </div>
 
             <div class="card-body">
-                @foreach($questoins as $question)
+                @foreach($questions as $question)
                 <ul class="list-group">              
                     
                     <li class="list-group-item">

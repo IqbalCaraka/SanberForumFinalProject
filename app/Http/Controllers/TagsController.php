@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Question;
 use App\Tag;
 use Illuminate\Http\Request;
 
-class QuestionsController extends Controller
+class TagsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        
-        return view('question.index')->with('questions', Question::all());
+        return view('tag.index')->with('tags', Tag::all());
     }
 
     /**
@@ -26,7 +24,7 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        return view('question.create')->with('tags', Tag::all());
+        return view ('tag.create');
     }
 
     /**
@@ -37,16 +35,11 @@ class QuestionsController extends Controller
      */
     public function store(Request $request)
     {
-        $question = Question::create([
-            'judul' => $request->judul,
-            'isi' =>$request->isi,
-            'user_id' => auth()->user()->id
+        $tag = Tag::create([
+            'nama' => $request->nama
         ]);
-        
-        if ($request->tags){
-            $question->tags()->attach($request->tags);
-        }  
-        return redirect(route('question.index'));
+
+        return view('tag.index');
     }
 
     /**
@@ -57,7 +50,7 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
-        return view('question.show')->with('question', Question::find($id));
+        //
     }
 
     /**
@@ -68,7 +61,7 @@ class QuestionsController extends Controller
      */
     public function edit($id)
     {
-        return view('question.edit')->with('question', Question::find($id));
+        //
     }
 
     /**
@@ -78,13 +71,9 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(Request $request, $id)
     {
-        $question->judul = $request->judul;
-        $question->isi = $request->isi;
-
-        $question->save();
-        return redirect(route('question.index'));
+        //
     }
 
     /**
@@ -93,9 +82,8 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $question)
+    public function destroy($id)
     {
-        $question->delete();
-        return redirect(route('question.index'));
+        //
     }
 }
