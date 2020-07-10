@@ -26,7 +26,6 @@ class QuestionVote{
             ->where('question_id', '=', $id )
             ->groupBy('question_id')
             ->first();   
-        
         return $data;
     }
 }

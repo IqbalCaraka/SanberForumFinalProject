@@ -9,6 +9,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+use App\Http\Controllers\ReputationsController;
+use Illuminate\Support\Facades\Auth;
+
 class RegisterController extends Controller
 {
     /*
@@ -64,10 +67,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        ReputationsController::store($user->id);
+        return $user;
     }
 }

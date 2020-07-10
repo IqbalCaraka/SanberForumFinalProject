@@ -51,6 +51,7 @@ class Question extends Model
     public function delete()
     {
         $this->commentques()->delete();
+        $this->answers()->delete();
         //detach digunakan utk menghapus pivot table
         $this->tags()->detach();
         return parent::delete();

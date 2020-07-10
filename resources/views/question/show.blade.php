@@ -22,6 +22,7 @@
                             <form action="{{route('upvote')}}" method="POST">
                                 {{@csrf_field()}}
                                 <input type="hidden" name="question_id" id="question_id" value="{{$question->id}}">
+                                <input type="hidden" name="question_user_id" id="question_user_id" value="{{$question->user_id}}">
                                 <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
                                 <button type="submit"  class="btn btn-info btn-sm">
                                     <span class="glyphicon glyphicon-upload"></span>UpVote
@@ -42,6 +43,7 @@
                             <form action="{{route('downvote')}}" method="POST">
                                 {{@csrf_field()}}
                                 <input type="hidden" name="question_id" id="question_id" value="{{$question->id}}">
+                                <input type="hidden" name="question_user_id" id="question_user_id" value="{{$question->user_id}}">
                                 <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
                                 <button type="submit"  class="btn btn-info btn-sm">
                                     <span class="glyphicon glyphicon-download"></span>UnVote
