@@ -35,7 +35,7 @@
                             @if(is_object ($question->votes($question->id)))
                                 <p style="font-size: 30px;">{{$question->votes($question->id)->value}}</p>
                             @else
-                                <p style="font-size: 30px;">0</p>
+                                <p style="font-size: 30px;">1</p>
                             @endif   
                         </div>
                         

@@ -21,11 +21,8 @@ class QuestionVote{
     }
 
     public static function joinQuestion($id){
-       $data =  DB::table('question_votes')
-            ->select(DB::raw('sum(value) as value, value'))
-            ->where('question_id', '=', $id )
-            ->groupBy('question_id')
-            ->first();   
-        return $data;
+        $data = DB::select("select sum(value) as value from question_votes where question_id = $id group by question_id");
+        //dd($data[0]);
+        return $data[0];
     }
 }
