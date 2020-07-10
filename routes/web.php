@@ -32,3 +32,5 @@ Route::resource('question','QuestionsController');
 Route::resource('tag','TagsController');
 
 Route::resource('category','CategoriesController');
+
+Route::resource('commentque','CommentQuesController');
