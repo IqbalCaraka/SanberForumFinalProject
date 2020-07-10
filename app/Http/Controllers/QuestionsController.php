@@ -6,6 +6,7 @@ use App\Category;
 use App\Question;
 use App\Tag;
 use Illuminate\Http\Request;
+use App\Http\Controllers\CommentQuesController;
 
 class QuestionsController extends Controller
 {
@@ -109,6 +110,11 @@ class QuestionsController extends Controller
      */
     public function destroy(Question $question)
     {
+        //dd($question->commentques);
+        //$commetques = new CommentQuesController;
+        //$commetques->destroy($question->id);
+        //dd($question);
+
         $question->delete();
         return redirect(route('question.index'));
     }
