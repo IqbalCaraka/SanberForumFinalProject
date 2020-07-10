@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Category;
+use App\CommentQue;
 use App\User;
 use App\Tag;
 
@@ -23,6 +24,10 @@ class Question extends Model
 
     public function tags(){
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function commentques(){
+        return $this->hasMany(CommentQue::class);
     }
 
     public function hasTag($tagid)
