@@ -43,6 +43,7 @@
 
             <div class="card-footer">
                 <a href="{{route('question.index')}}"  class="btn btn-danger btn-lg float-right btn-sm" role="button" aria-disabled="true">Kembali</a>
+                <a href="{{route('answer.create')}}"  class="btn btn-primary btn-lg float-right btn-sm mr-2" role="button" aria-disabled="true">Tambahkan Jawaban</a>
             </div>
         </div>
     </div>

@@ -21,13 +21,13 @@
                 <label for="question_id">Question</label>
                 <select name="question_id" id="question_id" class="form-control my-editor">
                     @foreach ($questions as $question)
-                        <option value="{{$question->id}}">{{$question->judul}}</option>
+                        <option value="{{$question->id}}">{!!$question->isi!!}</option>
                     @endforeach
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="isi">Isi</label>
+                <label for="isi">Answer</label>
                 <textarea name="isi" id="isi" class="form-control my-editor">{!! old('isi', $isi ?? '') !!}</textarea>                
             </div>
 
