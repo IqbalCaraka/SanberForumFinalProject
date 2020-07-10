@@ -44,18 +44,20 @@
                 @if($question->commentques()->count())
                 <h5 class="mb-2">Komentar : </h5>
                     @foreach ($question->commentques as $commentque )
-                    <div class="row ml-4">
+                    <div class="row ml-4 my-3">
                         <div class="col-md-2">
                             <p style="font-weight: 500;">{{$commentque->user->name}}</p>
                         </div>
-                        <div class="col-md-10">
-                        <p  style="font-style: italic; border-bottom: 0.5px solid grey;">{{$commentque->isi}}</p>
+                        <div class="col-md-10" style="border-bottom: 0.5px solid grey;">
+                            <p style="font-style: italic;">{{$commentque->isi}} 
+                            
+                                <div style="font-size: 10px;" class="justify-content-end float-right d-inline">
+                                    {{$commentque->created_at}}
+                                </div>
+                            </p>
+                            
                         </div>
                     </div>
-                        
-                        
-                        
-                        
                     @endforeach
                 @endif
                 <form action="{{route('commentque.store')}}" method="POST">
