@@ -7,13 +7,13 @@
     <div class="col-md-10">
         <div class="card card-default">
             <div class="card-header">
-                <h3 class="float-left">List Pertanyaan</h3>
-                <a href="{{route('question.create')}}"  class="btn btn-success btn-lg float-right btn-sm" role="button" aria-disabled="true">Buat Pertanyaan</a>
+                <h3 class="float-left">List Jawaban</h3>
+                <a href="{{route('answer.create')}}"  class="btn btn-success btn-lg float-right btn-sm" role="button" aria-disabled="true">Tambah Jawabanmu</a>
             </div>
 
             <div class="card-body">
-                @foreach($questions as $question)
-                <ul class="list-group">              
+                @foreach($answers as $answer)
+                <ul class="list-group" style="padding: 5px">              
                     
                     <li class="list-group-item">
 
@@ -30,23 +30,17 @@
 
                             <div class="col-md-9 justify-content-center my-auto "style="position: relative;">
                                 <div class="row ml-1 my-5" >
-                                    <h5 style="display: inline; position: absolute;"><a href="{{route('question.show', $question->id)}}" class="text-dark">{{$question->judul}} </a></h5>              
-                                </div>
-                                <div class="row ml-1 mt-5">
-                                    @foreach($question->tags as $tag)
-                                        <a class="badge badge-pill badge-secondary bg-gradient-primary mx-1" href="">{{$tag->nama}}</a>
-                                    @endforeach
-
+                                    <h5 style="display: inline; position: absolute;"><a href="{{route('answer.show', $answer->question_id)}}" class="text-dark">{!!$answer->isi!!}</a></h5>              
                                 </div>
                             </div>
                             
                             <div class="col-md-2 justify-content-center my-auto">
-                                <form action="{{route('question.destroy', $question->id)}}" style="display: inline" method="POST">
+                                <form action="{{route('answer.destroy', $answer->id)}}" style="display: inline" method="POST">
                                     {{@csrf_field()}}
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger float-right"> Delete </button>
                                 </form>
-                                <a href="{{route('question.edit', $question->id)}}" class="button btn btn-primary btn-sm float-right mr-2">Edit</a> 
+                                <a href="{{route('answer.edit', $answer->id)}}" class="button btn btn-primary btn-sm float-right mr-2">Edit</a> 
                             </div>
                             
                             

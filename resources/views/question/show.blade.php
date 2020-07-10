@@ -46,6 +46,7 @@
 
             <div class="card-footer">
                 <a href="{{route('question.index')}}"  class="btn btn-danger btn-lg float-right btn-sm" role="button" aria-disabled="true">Kembali</a>
+                <a href="{{route('answer.show', $question->id)}}" class="button btn btn-primary btn-sm float-right mr-3" style="inline">Lihat Jawaban</a>
             </div>
         </div>
     </div>
