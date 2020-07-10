@@ -36,3 +36,7 @@ Route::resource('category','CategoriesController');
 Route::resource('answer', 'AnswersController');
 
 Route::resource('commentque','CommentQuesController');
+
+
+Route::post('storeupvote', 'QuestionVotesController@storeUpVote')->name('upvote');
+Route::post('storedownvote', 'QuestionVotesController@storeDownvote')->name('downvote');

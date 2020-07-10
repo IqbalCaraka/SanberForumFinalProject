@@ -1,5 +1,10 @@
 @extends('layouts.master')
 
+@push('script-head')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+@endpush
+
 @section('content')
 
 <h1 class="text-center m-5" style="color: white">Sanber Forum</h1>
@@ -13,24 +18,39 @@
             <div class="card-body">     
                 <div class="row">
                     <div class="col-md-1">
-                        <div class="row my-4">
-                            <a href="" class="d-block text-dark text-decoration-none">
-                                <svg width="4em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-up-fill d-print-flex" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
-                                </svg>
-                            </a> 
+                        <div class="row my-5 ml-1">
+                            <form action="{{route('upvote')}}" method="POST">
+                                {{@csrf_field()}}
+                                <input type="hidden" name="question_id" id="question_id" value="{{$question->id}}">
+                                <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+                                <button type="submit"  class="btn btn-info btn-sm">
+                                    <span class="glyphicon glyphicon-upload"></span>UpVote
+                                </button>
+                            </form>
+                            
+                        </div>
+
+                        <div class="row my-5 justify-content-center ml-1">
+                            @if(is_object ($question->votes($question->id)))
+                                <p style="font-size: 30px;">{{$question->votes($question->id)->value}}</p>
+                            @else
+                                <p style="font-size: 30px;">0</p>
+                            @endif   
                         </div>
                         
-                        <div class="row my-4">
-                            <a href="" class="d-block text-dark text-decoration-none">
-                                <svg width="4em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-                                </svg>
-                            </a>
+                        <div class="row my-5 ml-1">
+                            <form action="{{route('downvote')}}" method="POST">
+                                {{@csrf_field()}}
+                                <input type="hidden" name="question_id" id="question_id" value="{{$question->id}}">
+                                <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+                                <button type="submit"  class="btn btn-info btn-sm">
+                                    <span class="glyphicon glyphicon-download"></span>UnVote
+                                </button>
+                            </form>
                         </div>
                     </div>
 
-                    <div class="col-md-11 justify-content-center my-auto" style="border-left: 1px solid grey;">
+                    <div class="col-md-10 justify-content-center my-auto ml-3" style="border-left: 1px solid grey;">
                         {!!$question->isi!!}
                         @foreach($question->tags as $tag)
                             <a class="badge badge-pill badge-secondary bg-gradient-primary" href="">{{$tag->nama}}</a>
@@ -84,4 +104,8 @@
 @push('scripts')
 <!-- Go to www.addthis.com/dashboard to customize your tools --> 
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f073cb55230ac3b"></script>
+@endpush
+
+@push('css')
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 @endpush

@@ -16,19 +16,23 @@
                     <div class="row" style="height:150px; position: relative; border-bottom: 1px solid grey;" >
 
                         <div class="col-md-1" style=" position: relative;" >
-                            <div class="row" style="margin: 0;position: absolute; top: 10%;left: 50%; transform: translate(-50%, -20%); -ms-transform: translate(-50%, -50%); height: 30%;"><!--width:100%; height: 50%;" >-->
-                                <p style="font-size: 30px;">0</p>
+                            <div class="row" style="margin: 0;position: absolute; top: 10%;left: 50%; transform: translate(-50%, -20%); -ms-transform: translate(-50%, -50%); height: 30%;">
+                                @if(is_object ($question->votes($question->id)))
+                                    <p style="font-size: 30px;">{{$question->votes($question->id)->value}}</p>
+                                @else
+                                    <p style="font-size: 30px;">0</p>
+                                @endif
                             </div>
 
-                            <div class="row" style="margin: 0;position: absolute; top: 30%;left: 50%; transform: translate(-50%, -0%); -ms-transform: translate(-50%, -50%); height: 30%;"><!--width:100%; height: 50%;" >-->
+                            <div class="row" style="margin: 0;position: absolute; top: 30%;left: 50%; transform: translate(-50%, -0%); -ms-transform: translate(-50%, -50%); height: 30%;">
                                 <p style="font-size: 10px;">Vote</p>
                             </div>
 
-                            <div class="row" style="margin: 0;position: absolute; bottom: 20%;left: 50%; transform: translate(-50%, -0%); -ms-transform: translate(-50%, -50%); height: 30%;"><!--width:100%; height: 50%;" >-->
+                            <div class="row" style="margin: 0;position: absolute; bottom: 20%;left: 50%; transform: translate(-50%, -0%); -ms-transform: translate(-50%, -50%); height: 30%;">
                                 <p style="font-size: 30px;">{{$question->answers()->count()}}</p>
                             </div>
 
-                            <div class="row" style="margin: 0;position: absolute; bottom: 10%;left: 50%; transform: translate(-50%, 0%); height: 10%;"><!--width:100%; height: 50%;" >-->
+                            <div class="row" style="margin: 0;position: absolute; bottom: 10%;left: 50%; transform: translate(-50%, 0%); height: 10%;">
                                 <p style="font-size: 10px;">Jawaban</p>
                             </div>
                         </div>

@@ -10,6 +10,7 @@ use App\CommentQue;
 use App\User;
 use App\Tag;
 use App\Answer;
+use App\QuestionVote;
 
 
 class Question extends Model
@@ -34,6 +35,11 @@ class Question extends Model
 
     public function answers(){
         return $this->hasMany(Answer::class);
+    }
+
+    public function votes($id){
+        //dd(QuestionVote:: joinQuestion($id));
+        return QuestionVote:: joinQuestion($id);
     }
 
     public function hasTag($tagid)
