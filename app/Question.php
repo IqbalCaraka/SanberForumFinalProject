@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 use App\Category;
 use App\CommentQue;
@@ -33,5 +34,14 @@ class Question extends Model
     public function hasTag($tagid)
     {
        return (in_array($tagid, $this->tags->pluck('id')->toArray()));
+    }
+
+    //Untuk menghapus relasi table terkait
+    public function delete()
+    {
+        $this->commentques()->delete();
+        //detach digunakan utk menghapus pivot table
+        $this->tags()->detach();
+        return parent::delete();
     }
 }
