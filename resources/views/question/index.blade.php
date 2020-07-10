@@ -17,22 +17,31 @@
                     
                     <li class="list-group-item">
 
-                        <div class="row">
-                            <div class="col-md-1 " >
-                                <div class="row my-4 justify-content-center" >
-                                    <p style="font-size: 10px;">Jumlah Vote</p>                                  
+                        <div class="row" style="height:150px; position: relative;" >
+                            <div class="col-md-1" style=" position: relative;" >
+                                <div class="row" style="margin: 0;position: absolute; top: 10%;left: 50%; transform: translate(-50%, -20%); -ms-transform: translate(-50%, -50%); height: 30%;"><!--width:100%; height: 50%;" >-->
+                                    <p style="font-size: 30px;">0</p>
                                 </div>
-                                
-                                <div class="row my-4 justify-content-center">
-                                    <p  style="font-size: 10px;">Jumlah Jawaban</p>
+
+                                <div class="row" style="margin: 0;position: absolute; top: 30%;left: 50%; transform: translate(-50%, -0%); -ms-transform: translate(-50%, -50%); height: 30%;"><!--width:100%; height: 50%;" >-->
+                                    <p style="font-size: 10px;">Vote</p>
+                                </div>
+
+                                <div class="row" style="margin: 0;position: absolute; bottom: 20%;left: 50%; transform: translate(-50%, -0%); -ms-transform: translate(-50%, -50%); height: 30%;"><!--width:100%; height: 50%;" >-->
+                                    <p style="font-size: 30px;">{{$question->answers()->count()}}</p>
+                                </div>
+
+                                <div class="row" style="margin: 0;position: absolute; bottom: 10%;left: 50%; transform: translate(-50%, 0%); height: 10%;"><!--width:100%; height: 50%;" >-->
+                                    <p style="font-size: 10px;">Jawaban</p>
                                 </div>
                             </div>
 
-                            <div class="col-md-9 justify-content-center mt-5 ">
-                                <div class="row ml-1" >
+                            <div class="col-md-9" style=" position: relative;">
+                                <div class="row" style=" position: absolute;  margin: 0; bottom:40%; ">
                                     <h5 style="display: inline; "><a href="{{route('question.show', $question->id)}}" class="text-dark">{{$question->judul}} </a></h5>              
                                 </div>
-                                <div class="row ml-1 mt-5">
+
+                                <div class="row" style=" position: absolute;  margin: 0; bottom:0%; transform: translate(0%, 0%); -ms-transform: translate(-100%, -100%); ">
                                     @foreach($question->tags as $tag)
                                         <a class="badge badge-pill badge-secondary bg-gradient-primary mx-1" href="">{{$tag->nama}}</a>
                                     @endforeach
@@ -40,13 +49,16 @@
                                 </div>
                             </div>
                             
-                            <div class="col-md-2 justify-content-center mt-5">
+                            <div class="col-md-2" style="position: relative;">
+                            <div class="row" style=" position: absolute; margin: 0; bottom:40%; left:20% ">
+                                <a href="{{route('question.edit', $question->id)}}" class="button btn btn-primary btn-sm mr-2">Edit</a> 
                                 <form action="{{route('question.destroy', $question->id)}}" style="display: inline" method="POST">
                                     {{@csrf_field()}}
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger float-right"> Delete </button>
+                                    <button type="submit" class="btn btn-sm btn-danger"> Delete </button>
                                 </form>
-                                <a href="{{route('question.edit', $question->id)}}" class="button btn btn-primary btn-sm float-right mr-2">Edit</a> 
+                                
+                            </div>
                             </div>
                             
                             

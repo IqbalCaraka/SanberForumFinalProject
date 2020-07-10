@@ -110,11 +110,6 @@ class QuestionsController extends Controller
      */
     public function destroy(Question $question)
     {
-        //dd($question->commentques);
-        //$commetques = new CommentQuesController;
-        //$commetques->destroy($question->id);
-        //dd($question);
-
         $question->delete();
         return redirect(route('question.index'));
     }

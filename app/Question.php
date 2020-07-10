@@ -9,6 +9,7 @@ use App\Category;
 use App\CommentQue;
 use App\User;
 use App\Tag;
+use App\Answer;
 
 
 class Question extends Model
@@ -29,6 +30,10 @@ class Question extends Model
 
     public function commentques(){
         return $this->hasMany(CommentQue::class);
+    }
+
+    public function answers(){
+        return $this->hasMany(Answer::class);
     }
 
     public function hasTag($tagid)

@@ -87,6 +87,6 @@ class CommentQuesController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
+        
     }
 }
