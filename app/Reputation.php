@@ -37,4 +37,11 @@ class Reputation{
             where('user_id', '=', $id)->
             update(['point' => $data->point] );
     }
+
+    public static function getReputationByUserId($id){
+        
+        $data = DB::table('reputations')->where('user_id', '=', $id)->first();
+        //dd($data);
+        return $data;
+    }
 }

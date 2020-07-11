@@ -1,6 +1,8 @@
 @extends('layouts.master')
 
 @push('script-head')
+    <!-- Go to www.addthis.com/dashboard to customize your tools --> 
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f073cb55230ac3b"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 @endpush
@@ -12,46 +14,71 @@
     <div class="col-md-10">
         <div class="card card-default">
             <div class="card-header">
-                <h3 class="float-left">{{$question->judul}}</h3>
+                <h3>{{$question->judul}}</h3>
+                <h6 style="font-style: italic;">Ditanyakan oleh {{$question->user->name}}</h6>
             </div>
 
-            <div class="card-body">     
+            <div class="card-body">
                 <div class="row">
                     <div class="col-md-1">
-                        <div class="row my-5 ml-1">
-                            <form action="{{route('upvote')}}" method="POST">
-                                {{@csrf_field()}}
-                                <input type="hidden" name="question_id" id="question_id" value="{{$question->id}}">
-                                <input type="hidden" name="question_user_id" id="question_user_id" value="{{$question->user_id}}">
-                                <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
-                                <button type="submit"  class="btn btn-info btn-sm">
-                                    <span class="glyphicon glyphicon-upload"></span>UpVote
-                                </button>
-                            </form>
-                            
-                        </div>
-
-                        <div class="row my-5 justify-content-center ml-1">
-                            @if(is_object ($question->votes($question->id)))
-                                <p style="font-size: 30px;">{{$question->votes($question->id)->value}}</p>
+                        @if( is_array ($auth->checkIsVoted($auth->id, $question->id)))
+                            @if(count((array)$auth->checkIsVoted($auth->id, $question->id)) != 0)
+                            <div class="row my-1 justify-content-center ml-1">
+                                @if(is_array ($question->votes($question->id)))
+                                    @if(count((array)$question->votes($question->id)) == 0)
+                                        <p style="font-size: 30px;">0</p>
+                                    @else
+                                        @foreach ($question->votes($question->id) as $votes)
+                                            <p style="font-size: 30px;">{{$votes->value}}</p>
+                                        @endforeach
+                                    @endif
+                                    
+                                @endif
+                            </div>
+                            <div class="row my-1 justify-content-center  ml-1">
+                                <p style="font-size: 15px;">Vote</p>
+                            </div> 
                             @else
-                                <p style="font-size: 30px;">1</p>
-                            @endif   
-                        </div>
-                        
-                        <div class="row my-5 ml-1">
-                            <form action="{{route('downvote')}}" method="POST">
-                                {{@csrf_field()}}
-                                <input type="hidden" name="question_id" id="question_id" value="{{$question->id}}">
-                                <input type="hidden" name="question_user_id" id="question_user_id" value="{{$question->user_id}}">
-                                <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
-                                <button type="submit"  class="btn btn-info btn-sm">
-                                    <span class="glyphicon glyphicon-download"></span>UnVote
-                                </button>
-                            </form>
-                        </div>
-                    </div>
+                            <div class="row my-5 ml-1">
+                                <form action="{{route('upvote')}}" method="POST">
+                                    {{@csrf_field()}}
+                                    <input type="hidden" name="question_id" id="question_id" value="{{$question->id}}">
+                                    <input type="hidden" name="question_user_id" id="question_user_id" value="{{$question->user_id}}">
+                                    <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+                                    <button type="submit"  class="btn btn-info btn-sm">
+                                        <span class="glyphicon glyphicon-upload"></span>UpVote
+                                    </button>
+                                </form>
+                            </div>
 
+                            <div class="row my-5 justify-content-center ml-1">
+                                @if(is_array ($question->votes($question->id)))
+                                    @if(count((array)$question->votes($question->id)) == 0)
+                                        <p style="font-size: 30px;">0</p>
+                                    @else
+                                        @foreach ($question->votes($question->id) as $votes)
+                                            <p style="font-size: 30px;">{{$votes->value}}</p>
+                                        @endforeach
+                                    @endif
+                                @endif
+                            </div> 
+                            <!--Apabila poin lebih dari 15 boleh downvote-->
+                            @if($auth->getReputation($auth->id)->point >14)
+                            <div class="row my-5 ml-1">
+                                <form action="{{route('downvote')}}" method="POST">
+                                    {{@csrf_field()}}
+                                    <input type="hidden" name="question_id" id="question_id" value="{{$question->id}}">
+                                    <input type="hidden" name="question_user_id" id="question_user_id" value="{{$question->user_id}}">
+                                    <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+                                    <button type="submit"  class="btn btn-info btn-sm">
+                                        <span class="glyphicon glyphicon-download"></span>UnVote
+                                    </button>
+                                </form>
+                            </div>
+                            @endif
+                            @endif
+                        @endif                        
+                    </div>
                     <div class="col-md-10 justify-content-center my-auto ml-3" style="border-left: 1px solid grey;">
                         {!!$question->isi!!}
                         @foreach($question->tags as $tag)
@@ -59,7 +86,8 @@
                         @endforeach
                         <div class="addthis_inline_share_toolbox mt-3"></div>
                     </div>
-                </div> 
+                </div>
+                
             </div>
 
             <div class="card-footer" style="background-color: white;">
@@ -97,16 +125,14 @@
                 <a href="{{route('question.index')}}"  class="btn btn-danger btn-lg float-right btn-sm" role="button" aria-disabled="true">Kembali</a>
                 <a href="{{route('answer.show', $question->id)}}" class="button btn btn-primary btn-sm float-right mr-3" style="display:inline;">Lihat Jawaban</a>
             </div>
+
         </div>
     </div>
 </div>
 
+
 @endsection
 
-@push('scripts')
-<!-- Go to www.addthis.com/dashboard to customize your tools --> 
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f073cb55230ac3b"></script>
-@endpush
 
 @push('css')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">

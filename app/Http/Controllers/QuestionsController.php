@@ -62,8 +62,11 @@ class QuestionsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        return view('question.show')->with('question', Question::find($id));
+    {   
+        //dd(Question::find($id));
+        return view('question.show')->
+            with('question', Question::find($id))->
+            with('auth', auth()->user());
     }
 
     /**

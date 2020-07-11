@@ -39,7 +39,7 @@ class Question extends Model
 
     public function votes($id){
         //dd(QuestionVote:: joinQuestion($id));
-        return QuestionVote:: joinQuestion($id);
+        return QuestionVote:: getNumberOfVotesByQuestionId($id);
     }
 
     public function hasTag($tagid)
