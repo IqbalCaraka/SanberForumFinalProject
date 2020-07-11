@@ -32,10 +32,14 @@
                         </div>
 
                         <div class="row my-5 justify-content-center ml-1">
-                            @if(is_object ($question->votes($question->id)))
-                                <p style="font-size: 30px;">{{$question->votes($question->id)->value}}</p>
-                            @else
-                                <p style="font-size: 30px;">1</p>
+                            @if(is_array ($question->votes($question->id)))
+                                @if(count((array)$question->votes($question->id)) == 0)
+                                    <p style="font-size: 30px;">0</p>
+                                @else
+                                    @foreach ($question->votes($question->id) as $votes)
+                                        <p style="font-size: 30px;">{{$votes->value}}</p>
+                                    @endforeach
+                                @endif
                             @endif   
                         </div>
                         

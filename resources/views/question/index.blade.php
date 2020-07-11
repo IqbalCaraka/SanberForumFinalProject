@@ -17,11 +17,15 @@
 
                         <div class="col-md-1" style=" position: relative;" >
                             <div class="row" style="margin: 0;position: absolute; top: 10%;left: 50%; transform: translate(-50%, -20%); -ms-transform: translate(-50%, -50%); height: 30%;">
-                                @if(is_object ($question->votes($question->id)))
-                                    <p style="font-size: 30px;">{{$question->votes($question->id)->value}}</p>
-                                @else
-                                    <p style="font-size: 30px;">0</p>
-                                @endif
+                                @if(is_array ($question->votes($question->id)))
+                                    @if(count((array)$question->votes($question->id)) == 0)
+                                        <p style="font-size: 30px;">0</p>
+                                    @else
+                                        @foreach ($question->votes($question->id) as $votes)
+                                            <p style="font-size: 30px;">{{$votes->value}}</p>
+                                        @endforeach
+                                    @endif
+                                @endif  
                             </div>
 
                             <div class="row" style="margin: 0;position: absolute; top: 30%;left: 50%; transform: translate(-50%, -0%); -ms-transform: translate(-50%, -50%); height: 30%;">
