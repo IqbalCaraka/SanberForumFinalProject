@@ -22,6 +22,7 @@
                 <div class="row">
                     <div class="col-md-1">
                         @if( is_array ($auth->checkIsVoted($auth->id, $question->id)))
+                            <!--KETIKA TELAH SELESAI VOTE-->
                             @if(count((array)$auth->checkIsVoted($auth->id, $question->id)) != 0)
                             <div class="row my-1 justify-content-center ml-1">
                                 @if(is_array ($question->votes($question->id)))
@@ -39,6 +40,7 @@
                                 <p style="font-size: 15px;">Vote</p>
                             </div> 
                             @else
+                            <!--KETIKA BELUM PERNAH VOTE-->
                             <div class="row my-5 ml-1">
                                 <form action="{{route('upvote')}}" method="POST">
                                     {{@csrf_field()}}

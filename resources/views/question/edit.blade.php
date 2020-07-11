@@ -65,7 +65,7 @@
                     <button type="submit"class="btn btn-success my-4 justify-right">
                         Update
                     </button>
-                    <a href="{{route('question.index')}}" class="button btn btn-danger ">Batal</a>
+                    <a href="{{route('myquestion.index', Auth::user()->id )}}" class="button btn btn-danger ">Batal</a>
                 </div>
 
             </form>

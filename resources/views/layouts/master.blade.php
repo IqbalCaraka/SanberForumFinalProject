@@ -24,6 +24,11 @@
       <li class="nav-item active">
         <a class="nav-link" href="{{route('question.index')}}">Question <span class="sr-only">(current)</span></a>
       </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="{{route('myquestion.index', Auth::user()->id)}}">MyQuestion <span class="sr-only">(current)</span></a>
+      </li>
+
       <li class="nav-item">
         <a class="nav-link" href="{{route('category.index')}}">Category</a>
       </li>

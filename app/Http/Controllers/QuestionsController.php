@@ -17,8 +17,13 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        
         return view('question.index')->with('questions', Question::all());
+    }
+    
+
+    public function myquestionindex($user_id){
+        $myquestion = Question::all()->where('user_id', $user_id);
+        return view('question.myquestion')->with('myquestion', $myquestion);
     }
 
     /**
@@ -102,7 +107,7 @@ class QuestionsController extends Controller
         }
 
         $question->update();
-        return redirect(route('question.index'));
+        return redirect(route('myquestion.index', $question->user_id));
     }
 
     /**
@@ -114,6 +119,6 @@ class QuestionsController extends Controller
     public function destroy(Question $question)
     {
         $question->delete();
-        return redirect(route('question.index'));
+        return redirect()->back();
     }
 }

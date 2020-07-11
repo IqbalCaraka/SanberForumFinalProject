@@ -258,6 +258,7 @@
                     </div>
                     <ul>
                         <li class="active"><a href="{{route('question.index')}}">Question</a></li>
+                        <li><a href="{{route('myquestion.index', Auth::user()->id )}}">MyQuestion</a></li>
                         <li><a href="{{route('category.index')}}">Category</a></li>
                         <li><a href="{{route('tag.index')}}">Tag</a></li>
                         <li><a href="{{route('answer.index')}}">Answer</a></li>

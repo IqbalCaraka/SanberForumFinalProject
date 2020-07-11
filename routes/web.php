@@ -27,7 +27,8 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 });
 
 Route::group(['middleware' => ['auth']], function(){
-	Route::resource('question','QuestionsController');
+    Route::resource('question','QuestionsController');
+    Route::get('myquestion/{userid}', 'QuestionsController@myquestionindex')->name('myquestion.index');
 	Route::resource('tag','TagsController');
 	Route::resource('category','CategoriesController');
 	Route::resource('answer', 'AnswersController');

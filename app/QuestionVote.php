@@ -25,7 +25,7 @@ class QuestionVote{
 
         //dd($data[0]);
         //return $data[0];
-        //dd($data);
+        //dd("909");
         return $data;
     }
 

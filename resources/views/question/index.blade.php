@@ -107,16 +107,20 @@
                                     <p>{{$question->user['name']}}</p>
                                 </div>
                             </div>
-                            <div class="posts__replies">{{$question->answers()->count()}}
+                                <div class="posts__replies">{{$question->answers()->count()}}
                             </div>
-                             <div class="posts__replies">{{$question->commentques()->count()}}
+                                <div class="posts__replies">{{$question->commentques()->count()}}
                             </div>
                             <div class="posts__views">
-                                @if(is_object ($question->votes($question->id)))
-                                    <p>{{$question->votes($question->id)->value}}</p>
-                                @else
+                            @if(is_array ($question->votes($question->id)))
+                                @if(count((array)$question->votes($question->id)) == 0)
                                     <p style="font-size: 30px;">0</p>
+                                @else
+                                    @foreach ($question->votes($question->id) as $votes)
+                                        <p style="font-size: 30px;">{{$votes->value}}</p>
+                                    @endforeach
                                 @endif
+                            @endif 
                             </div>
                         </div>
                     </div>
