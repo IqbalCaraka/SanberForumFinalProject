@@ -1,9 +1,7 @@
-@extends('layouts.master')
+@extends('layouts.master3')
 
 @section('content')
-
-<h1 class="text-center m-5" style="color: white">Sanber Forum</h1>
-<div class="row justify-content-center">
+<!-- <div class="row justify-content-center">
     <div class="col-md-10">
         <div class="card card-default">
             <div class="card-header">
@@ -69,8 +67,56 @@
             </div>
         </div>
     </div>
-</div>
-
+</div> -->
+<div class="posts__head">
+                    <div class="posts__topic">Pertanyaan</div>
+                    <div class="posts__category">Category</div>
+                    <div class="posts__users">Penanya</div>
+                    <div class="posts__replies">Jawaban</div>
+                    <div class="posts__replies">Komentar</div>
+                    <div class="posts__views">Vote</div>
+                </div>
+<a href="{{route('question.create')}}"  class="btn btn-success btn-lg float-right btn-sm" role="button" aria-disabled="true">Buat Pertanyaan</a>
+<hr>
+@foreach($questions as $question)
+<div class="posts__item bg-f2f4f6">
+                        <div class="posts__section-left">
+                            <div class="posts__topic">
+                                <div class="posts__content">
+                                    <a href="{{route('question.show', $question->id)}}">
+                                        <h3>{{$question->judul}}</h3>
+                                    </a>
+                                    <div class="posts__tags tags">
+                                        @foreach($question->tags as $tag)
+                                            <a class="badge badge-pill badge-secondary bg-gradient-primary" href="">{{$tag->nama}}</a>
+                                        @endforeach
+                                    </div>
+                                    <p>{{date('l, d-m-Y', strtotime($question->created_at))}} || {{date('l, d-m-Y', strtotime($question->updated_at))}}</p>
+                                </div>
+                            </div>
+                            <div class="posts__category"><a href="#" class="category"><i class="bg-4436f8"></i>{{$question->category['nama']}}</a></div>
+                        </div>
+                        <div class="posts__section-right">
+                            <div class="posts__users">
+                                <div>
+                                    <p>{{$question->user['name']}}</p>
+                                </div>
+                            </div>
+                            <div class="posts__replies">{{$question->answers()->count()}}
+                            </div>
+                             <div class="posts__replies">{{$question->commentques()->count()}}
+                            </div>
+                            <div class="posts__views">
+                                @if(is_object ($question->votes($question->id)))
+                                    <p>{{$question->votes($question->id)->value}}</p>
+                                @else
+                                    <p style="font-size: 30px;">0</p>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+<hr>
+ @endforeach
 
 
 @endsection

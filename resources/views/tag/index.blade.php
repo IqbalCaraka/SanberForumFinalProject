@@ -8,6 +8,7 @@
         <div class="card card-default">
             <div class="card-header">
                 <h5 class="float-left">Tags</h5>
+                  <a href="{{route('tag.create')}}"><input type="submit" class="btn btn-primary" value="Tambah" style="float: right;"></a>
             </div>
 
             <div class="card-body">

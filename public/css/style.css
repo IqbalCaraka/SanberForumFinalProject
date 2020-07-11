@@ -1,0 +1,306 @@
+/* html {
+    scroll-behavior: smooth;
+  } */
+
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes|Niconne|Satisfy|Volkhov&display=swap');
+:root {
+    --primary-color: rgba(255,77,0,1);
+}
+
+.navbar-brand{
+    font-family: Niconne;
+    font-size: 50px;
+    font-weight: 800;
+}
+
+
+.nav-item {
+    font-weight: 500;
+}
+
+.jumbotron{
+    position: relative;
+    background-image: url(img/background5.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    color: aliceblue;
+    min-height: 600px;
+    margin-top: 100px;
+}
+
+.dark{
+    background-color: rgba(0, 0,0, 0.5);
+    padding: 30px;
+    border-radius: 100px;
+}
+
+.subscribe{
+    margin-top: 100px;;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0,0, 0.5);
+    width: 100%;
+    min-height: 100px;
+}
+
+.btn-subscribe:hover{
+    color: black;
+}
+
+.lead{
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.display-4{
+    font-family: Volkhov;
+    font-size: 400%;
+    font-weight: 800;
+}
+
+.food{
+    color: var(--primary-color);
+}
+
+.nav-item{
+    font-size: 20px;
+}
+
+.btn{
+    border-radius: 30px;
+    background-color: var(--primary-color);
+    border-color:white;
+}
+.btn:hover{
+    border-radius: 30px;
+    background-color: white;
+    color: var(--primary-color);
+    border-color:var(--primary-color);
+}
+
+/* 
+-------------------------------------------- bawah ------------------------------------- */
+@media (max-width: 768px){
+    #cta{
+        height: 1000px;
+    }
+
+    #cta .dark-overlay{
+        height: 1000px;
+    }
+
+    #cta .cloud-overlay{
+        height: 1000px;
+    }
+}
+
+#cta{
+    position: relative;
+    background: url("img/background5.jpg") no-repeat;
+    background-size:cover ;
+    background-attachment: fixed;
+    min-height: 550px; 
+}
+
+#cta .dark-overlay{
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 550px;
+}
+
+#cta .cloud-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(img/awan.png);
+    animation: animate 300s linear infinite;
+}
+
+@keyframes animate{
+    0%{
+        background-position: 0px;
+    }
+    100%{
+        background-position: 5440px;
+    }
+}
+
+#cta h3{
+    margin-top: 80px;
+    color: #fff;
+}
+
+#cta h2{
+    margin-top: 1em;
+    color: var(--primary-color);
+}
+
+#cta h4{
+    color: #fff;
+}
+
+#cta i{
+    color: var(--primary-color);
+    font-size: 34px;
+    margin: 1em;
+}
+
+#cta a{
+    background-color: var(--primary-color);
+    margin-top: 3em;
+    padding: 1.3em 3em !important;
+    color: aliceblue;
+    border-radius:40px;
+}
+
+
+
+@media(max-width: 768px){
+    #cta h3{
+        font-size: 44px;
+    }
+
+    #cta h2{
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    #cta a{
+        padding: 8px 14px;
+    }
+}
+
+.deskripsi{
+    font-weight: 600;
+}
+/* 
+--------------------- Recipe -------------------- */
+.recipe{
+    position: relative;
+    background-image: url(img/background6.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    color: aliceblue;
+    min-height: 300px;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+
+.recipes{
+    font-family: Satisfy;
+    font-weight: 800;
+    font-size: 100px;
+}
+
+.about{
+    font-family: Satisfy;
+    font-weight: 800;
+    font-size: 100px;
+    color:var(--primary-color);
+}
+
+.menus{
+    font-family: Satisfy;
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 70px;
+}
+
+.view-menu{
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: underline;
+}
+/* 
+-------------------------- STORY -------------------------- */
+.story{
+    position: relative;
+    background-image: url(img/story2.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    color: aliceblue;
+    min-height: 300px;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.banner{
+    height: 340px;
+    background-size:cover ;
+}
+
+h5{
+    color: white;
+}
+
+
+
+/* 
+------------------------ BOOK a Table ----------------------- */
+
+.book{
+    position: relative;
+    background-image: url(img/book.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    color: whitesmoke;
+    min-height: 400px;
+    margin-top: 100px;
+    margin-bottom:50px;
+}
+
+.dark-book{
+    background-color: rgba(0, 0,0, 0.5);
+    padding: 30px;
+    border-radius: 100px;
+    height: 400px;
+}
+/* 
+------------------------ Reserve ------------------ */
+.reserve{
+    position: relative;
+    background-image: url(img/reserve.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    color: whitesmoke;
+    min-height: 200px;
+    margin-top: 100px;
+    margin-bottom:50px;
+}
+
+.policy{
+    position: relative;
+    background-image: url(img/berbincang.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    color: whitesmoke;
+    min-height: 100px;
+    margin-top: -50px;
+    margin-bottom:50px;
+}
+
+.dark-policy{
+    background-color: rgba(0, 0,0, 0.5);
+    padding: 30px;
+    height: 200px;
+}
+
+.dark-reserve{
+    background-color: rgba(0, 0,0, 0.5);
+    padding: 30px;
+    border-radius: 100px;
+    height: 200px;
+}
+
+.btn-hitam{
+    background-color: black;
+    color: blanchedalmond;
+    margin-top: 50px;
+}

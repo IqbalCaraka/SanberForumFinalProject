@@ -18,7 +18,6 @@ Route::get('/', function () {
 });
 
 
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -27,16 +26,13 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
-Route::resource('question','QuestionsController');
+Route::group(['middleware' => ['auth']], function(){
+	Route::resource('question','QuestionsController');
+	Route::resource('tag','TagsController');
+	Route::resource('category','CategoriesController');
+	Route::resource('answer', 'AnswersController');
+	Route::resource('commentque','CommentQuesController');
 
-Route::resource('tag','TagsController');
-
-Route::resource('category','CategoriesController');
-
-Route::resource('answer', 'AnswersController');
-
-Route::resource('commentque','CommentQuesController');
-
-
-Route::post('storeupvote', 'QuestionVotesController@storeUpVote')->name('upvote');
-Route::post('storedownvote', 'QuestionVotesController@storeDownvote')->name('downvote');
+	Route::post('storeupvote', 'QuestionVotesController@storeUpVote')->name('upvote');
+	Route::post('storedownvote', 'QuestionVotesController@storeDownvote')->name('downvote');
+});
