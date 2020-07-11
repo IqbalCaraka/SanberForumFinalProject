@@ -17,7 +17,7 @@
                 <button type="submit"class="btn btn-success my-4 justify-right">
                     Submit
                 </button>
-                <a href="{{route('question.index')}}" class="button btn btn-danger ">Batal</a>
+                <a href="{{route('category.index')}}" class="button btn btn-danger ">Batal</a>
             </div>
 
         </form>

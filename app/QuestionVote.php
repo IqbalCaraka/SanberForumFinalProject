@@ -20,13 +20,19 @@ class QuestionVote{
         );
     }
 
-    public static function joinQuestion($id){
-       $data =  DB::table('question_votes')
-            ->select(DB::raw('sum(value) as value, value'))
-            ->where('question_id', '=', $id )
-            ->groupBy('question_id')
-            ->first();   
-        
+    public static function getNumberOfVotesByQuestionId($id){
+        $data = DB::select("select sum(value) as value from question_votes where question_id = $id group by question_id");
+
+        //dd($data[0]);
+        //return $data[0];
+        //dd("909");
         return $data;
+    }
+
+    public static function checkIsUserVoteByAuthIdAndQuestionId($auth_id, $qustion_id){
+        $data = DB::select("select* from question_votes where question_id = $qustion_id and user_id=$auth_id");
+        //dd($data);
+        return $data;
+
     }
 }

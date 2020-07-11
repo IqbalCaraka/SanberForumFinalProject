@@ -22,6 +22,8 @@ class CreateQuestionVotesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
 
+            $table->timestamp('dibuat')->useCurrent();
+            $table->timestamp('diperbarui')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->timestamps();
         });
     }
