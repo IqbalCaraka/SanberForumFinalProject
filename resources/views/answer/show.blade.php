@@ -41,6 +41,37 @@
                 </ul>
             </div>
 
+            <div class="card-footer" style="background-color: white;">
+                @if($answer->commentans()->count())
+                <h5 class="mb-2">Komentar : </h5>
+                    @foreach ($answer->commentans as $commentan )
+                    <div class="row ml-4 my-3">
+                        <div class="col-md-2">
+                            <p style="font-weight: 500;">{{$commentan->user->name}}</p>
+                        </div>
+                        <div class="col-md-10" style="border-bottom: 0.5px solid grey;">
+                            <p style="font-style: italic;">{{$commentan->isi}} 
+                            
+                                <div style="font-size: 10px;" class="justify-content-end float-right d-inline">
+                                    {{$commentan->created_at}}
+                                </div>
+                            </p>
+                            
+                        </div>
+                    </div>
+                    @endforeach
+                @endif
+                <form action="{{route('commentan.store')}}" method="POST">
+                {{@csrf_field()}}
+                    <div class="form-group">
+                        <input type="text" class="form-control d-inline" style="width: 90%;" name="isi" id="isi" title="Tambah Komentar" placeholder="Tambah Komnentar">
+                        <input type="hidden" class="form-control d-inline" style="width: 0%;" name="id" id="id" value="{{$answer->id}}" >
+                        <button type="submit"class="btn btn-success btn-sm float-right mt-1">Submit</button>
+                    </div>
+                </form>
+                
+            </div>
+
             <div class="card-footer">
                 <a href="{{route('question.index')}}"  class="btn btn-danger btn-lg float-right btn-sm" role="button" aria-disabled="true">Kembali</a>
                 <a href="{{route('answer.create')}}"  class="btn btn-primary btn-lg float-right btn-sm mr-2" role="button" aria-disabled="true">Tambahkan Jawaban</a>
