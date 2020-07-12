@@ -17,6 +17,7 @@ class CreateAnswersTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->text('isi');
+            $table->int('is_best_answer')->nullable();
             $table->unsignedBigInteger('question_id');
 
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');

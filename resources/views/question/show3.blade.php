@@ -141,9 +141,20 @@
                     <div class ="card card-default mt-5" style="background-color: #ecf0f1;">
                         <div class="card-body">
                             <div class="col-md-2">
+                                <form action="{{route('bestanswer')}}" method="POST">
+                                    {{@csrf_field()}}
+                                    <input type="hidden" name="question_id" id="question_id" value="{{ $question->id}}">
+                                    <input type="hidden" name="answer_id" id="answer_id" value="{{ $answer->id}}">
+                                    <input type="hidden" name="answer_user_id" id="answer_user_id" value="{{ $answer->user_id}}">
+                                    <button type="submit"  class="btn btn-warning btn-sm">
+                                        BEST ANSWER
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="col-md-2">
                                 <p style="font-weight: 700;">{{$answer->user->name}}</p>
                             </div>
-                            <div class="col-md-10" style="border-bottom: 0.5px solid grey;">
+                            <div class="col-md-8" style="border-bottom: 0.5px solid grey;">
                                 <p style="font-style: italic;">{!!$answer->isi!!} 
                                 
                                     <div style="font-size: 10px;" class="justify-content-end float-right d-inline">

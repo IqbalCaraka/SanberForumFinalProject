@@ -37,4 +37,5 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('commentan','CommentAnsController');
     Route::post('storeupvote', 'QuestionVotesController@storeUpVote')->name('upvote');
     Route::post('storedownvote', 'QuestionVotesController@storeDownvote')->name('downvote');
+    Route::post('bestanswer', 'QuestionVotesController@storeBestAnswer')->name('bestanswer');
 });

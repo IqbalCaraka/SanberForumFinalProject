@@ -54,6 +54,12 @@ class AnswersController extends Controller
         return redirect(route('question.show', $request->question_id));
     }
 
+    public static function storeIsBestAnswer($id){
+        $update_answer = Answer::all()->where('id', $id)->first();
+
+        dd($update_answer->user_id);
+    }
+
     /**
      * Display the specified resource.
      *
