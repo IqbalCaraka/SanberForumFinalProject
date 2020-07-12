@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 class Reputation{
     public static function createReputation($id){
         DB::table('reputations')->insert([
-            'point'=>50,
+            'point'=>10,
             'user_id' => $id
         ]);
     }

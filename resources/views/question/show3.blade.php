@@ -93,7 +93,7 @@
             </div>
 
             <div class="card-footer" style="background-color: white;">
-                @if($question->commentques()->count())
+                @if($question->commentques()->count() >0)
                 <h5 class="mb-2">Komentar : </h5>
                     @foreach ($question->commentques as $commentque )
                     <div class="row ml-4 my-3">
@@ -135,21 +135,39 @@
             <div class="card-body" >
             <!--Untuk Menampilkan Answer-->
             <a href="{{route('answercreate', $question->id)}}" class="button btn btn-primary btn-sm float-right mr-3" style="display:inline;">Tambahkan Jawaban</a>
+            
             @if($question->answers()->count()>0)
                 <h1 class="justify-content-center ">Jawaban</h1>
                 @foreach ($question->answers as $answer )
                     <div class ="card card-default mt-5" style="background-color: #ecf0f1;">
                         <div class="card-body">
                             <div class="col-md-2">
-                                <form action="{{route('bestanswer')}}" method="POST">
-                                    {{@csrf_field()}}
-                                    <input type="hidden" name="question_id" id="question_id" value="{{ $question->id}}">
-                                    <input type="hidden" name="answer_id" id="answer_id" value="{{ $answer->id}}">
-                                    <input type="hidden" name="answer_user_id" id="answer_user_id" value="{{ $answer->user_id}}">
-                                    <button type="submit"  class="btn btn-warning btn-sm">
-                                        BEST ANSWER
-                                    </button>
-                                </form>
+                            @if($question->bestAns()->count() == 0)
+                                @if($question->user_id == Auth::user()->id)
+                                    <form action="{{route('bestans.store')}}" method="POST">
+                                        {{@csrf_field()}}
+                                        <input type="hidden" name="question_id" id="question_id" value="{{ $question->id}}">
+                                        <input type="hidden" name="answer_id" id="answer_id" value="{{ $answer->id}}">
+                                        <input type="hidden" name="user_id" id="user_id" value="{{ $answer->user_id}}">                                    
+                                        <button type="submit"  class="btn btn-warning btn-sm">
+                                            BEST ANSWER
+                                        </button>
+                                    </form>
+                                @else
+                                <div class="alert alert-success" role="alert">
+                                    <h4 class="alert-heading">Can't Vote</h4>
+                                    <p>Bukan Pembuat Pertanyaan</p>
+                                </div>
+                                @endif   
+                            @else
+                                @if($question->bestAns->answer_id == $answer->id)
+                                    <div class="alert alert-success" role="alert">
+                                        <h4 class="alert-heading ml-3">Best Answer</h4>
+                                    </div>
+                                @endif
+                                
+                            @endif
+                                
                             </div>
                             <div class="col-md-2">
                                 <p style="font-weight: 700;">{{$answer->user->name}}</p>

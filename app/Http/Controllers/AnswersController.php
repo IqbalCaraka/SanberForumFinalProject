@@ -56,8 +56,10 @@ class AnswersController extends Controller
 
     public static function storeIsBestAnswer($id){
         $update_answer = Answer::all()->where('id', $id)->first();
-
-        dd($update_answer->user_id);
+        //dd($update_answer->is_best_answer);
+        $update_answer->is_best_answer = 1;
+        $update_answer->update();
+        return redirect()->back();
     }
 
     /**

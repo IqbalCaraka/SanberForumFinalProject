@@ -11,6 +11,7 @@ use App\User;
 use App\Tag;
 use App\Answer;
 use App\QuestionVote;
+use App\BestAn;
 
 
 class Question extends Model
@@ -35,6 +36,10 @@ class Question extends Model
 
     public function answers(){
         return $this->hasMany(Answer::class);
+    }
+
+    public function bestAns(){
+        return $this->hasOne(BestAn::class);
     }
 
     public function votes($id){
