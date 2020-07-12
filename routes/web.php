@@ -31,7 +31,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('myquestion/{userid}', 'QuestionsController@myquestionindex')->name('myquestion.index');
 	Route::resource('tag','TagsController');
 	Route::resource('category','CategoriesController');
-	Route::resource('answer', 'AnswersController');
+    Route::resource('answer', 'AnswersController');
+    Route::get('answercreate/{question_id}', 'AnswersController@createans')->name('answercreate');
 	Route::resource('commentque','CommentQuesController');
     Route::resource('commentan','CommentAnsController');
     Route::post('storeupvote', 'QuestionVotesController@storeUpVote')->name('upvote');

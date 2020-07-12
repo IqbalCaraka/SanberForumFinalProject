@@ -14,16 +14,27 @@
 <div class="container ">
 <div class="row justify-content-center mt-5">
     <div class="col-md-10">
+    
+        
+        
+
         <form action="{{route('answer.store')}}" method="POST">
             {{@csrf_field()}}
 
             <div class="form-group">
-                <label for="question_id">Question</label>
-                <select name="question_id" id="question_id" class="form-control my-editor">
+                <!--Tambahan Baru-->
+                <h2 class="mb-5" style="font-style: italic;" >Pertanyaan</h2>
+                @foreach($questions as $question)
+                    {!!$question->isi!!}
+                    <input type="hidden"  name="question_id" id="question_id" value="{{$question->id}}" class="form-control my-editor">
+                @endforeach
+                
+                <!--<label for="question_id">Question</label>
+                <select  name="question_id" id="question_id" class="form-control my-editor">
                     @foreach ($questions as $question)
                         <option value="{{$question->id}}">{!!$question->isi!!}</option>
                     @endforeach
-                </select>
+                </select>-->
             </div>
 
             <div class="form-group">

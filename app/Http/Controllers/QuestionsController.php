@@ -69,7 +69,7 @@ class QuestionsController extends Controller
     public function show($id)
     {   
         //dd(Question::find($id));
-        return view('question.show')->
+        return view('question.show3')->
             with('question', Question::find($id))->
             with('auth', auth()->user());
     }

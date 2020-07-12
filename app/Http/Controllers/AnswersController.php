@@ -23,12 +23,19 @@ class AnswersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+
+    /*public function create()
     {
         $questions = Question::all();
         return view('answer.create', compact('questions'));
-    }
+    }*/
+    
+    public function createans($question_id)
+    {
+       $questions = Question::all()->where('id', $question_id);
+        return view('answer.create', compact('questions'));
 
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -43,7 +50,8 @@ class AnswersController extends Controller
             'question_id' => $request->question_id
         ]);
 
-        return redirect(route('answer.index'));
+        //return redirect(route('answer.index'));
+        return redirect(route('question.show', $request->question_id));
     }
 
     /**

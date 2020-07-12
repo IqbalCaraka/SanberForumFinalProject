@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CommentAn;
+use App\Question;
+use App\Answer;
+
 
 class CommentAnsController extends Controller
 {
@@ -40,7 +43,11 @@ class CommentAnsController extends Controller
             'answer_id'=> $request->id,
             'user_id'=>auth()->user()->id
         ]);
-        return redirect(route('answer.show', $request->id));
+        //tambahan untuk tampil komen di question show
+        $answer = Answer::find($request->id);
+        //return redirect(route('answer.show', $request->id));
+
+        return redirect(route('question.show', $answer->question_id));
     }
 
     /**
