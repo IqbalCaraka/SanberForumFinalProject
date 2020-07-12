@@ -279,7 +279,7 @@
             <div class="container">
                 <div class="footer__logo">
                     <div>
-                        <img src="fonts/icons/main/Logo_Forum.svg" alt="logo">Unity
+                        <img src="{{asset('template/fonts/icons/main/Logo_Forum.svg')}}" alt="logo">Unity
                     </div>
                 </div>
                 <div class="footer__nav">
